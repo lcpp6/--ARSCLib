@@ -1,28 +1,35 @@
 # ARSCLib
-## Android binary resources read/write java library
-This library is developed based on AOSP structure of androidfw/ResourceTypes.h , to totally replace aapt/aapt2
-#### Read, write, modify and create
-* Resource table (resources.arsc)
-* Binary xml files (AndroidManifest.xml & resource xml)
-#### Convert from/to json string (for obfuscated resources)
+## Android 二进制资源【读/写】的 java 库
+该库基于 androidfw/ResourceTypes.h 的 AOSP 结构开发，完全替代 aapt/aapt2
 
-* Decodes resources to readable json
-* Encodes/Builds sources in json format to binary resources
+#### 读取、写入、修改和创建————（Read, write, modify and create
+* 资源表（resources.arsc）————Resource table (resources.arsc)
+* 二进制 xml 文件（AndroidManifest.xml 和资源 xml）————Binary xml files (AndroidManifest.xml & resource xml)
 
-#### Convert from/to XML string (for un-obfuscated resources)
+#### 转换为 JSON 字符串（用于混淆的资源）————Convert from/to json string (for obfuscated resources)
 
-* Decodes resources to source code
-* Encodes/Builds source XML to binary resources
+* 将资源解码为可读的 JSON————Decodes resources to readable json
+* 将 JSON 格式的资源 编码/构建为二进制资源————Encodes/Builds sources in json format to binary resources
+
+#### 转换为 XML 字符串（用于未混淆的资源）————Convert from/to XML string (for un-obfuscated resources)
+
+* 将资源解码为源代码————Decodes resources to source code
+* 将源 XML 编码/构建为二进制资源————Encodes/Builds source XML to binary resources
 
 ##### _NOTES:_
 
-_1- Decoding resources to XML requires all source names should be un-obfuscated and valid_
+_1- 将资源解码为 XML 要求所有源名称都应清晰且有效————Decoding resources to XML requires all source names should be un-obfuscated and valid_
 
-_2- User of this lib is assumed to have good knowledge of android source XML syntax, thus
+_2- 假定此库的用户对 android 源 XML 语法有很好的了解，因此在编码/构建期间，它不会像 aapt/aapt2 那样频繁地验证或抛出 XML 语法错误。
+例如，您可以在某些地方设置错误的值，而不会妨碍成功构建。
+您可以在 AndroidManifest.xml 上设置， package="Wrong 😂 (package) name!" 然后您必须知道这些值是否被 android 设备接受。————
+
+User of this lib is assumed to have good knowledge of android source XML syntax, thus
 during encoding/building it does not validate or throw XML syntax errors as often as aapt/aapt2. For
 example, you are allowed to set wrong values on some places and doesn't prevent from
 successful building. On AndroidManifest.xml you can set  ``` package="Wrong 😂 (package) name!" ```
 then you have to know such values are acceptable by android devices._
+
 
 
 #### Example application
